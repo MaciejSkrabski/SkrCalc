@@ -36,8 +36,8 @@ namespace Kalkulator
                 textBox1.Text = "0";
             eqPressed = false;
             
-            if ((textBox1.Text == "0") || opPressed)
-                textBox1.Clear();
+            if (textBox1.Text == "0")
+               textBox1.Clear();
             opPressed = false;
             Button b = (Button)sender;
             if (textBox1.Text.Length < 12)
@@ -55,15 +55,15 @@ namespace Kalkulator
 
         private void opClick(object sender, EventArgs e)
         {
+            opPressed = true;
+            eqPressed = false;
+            dotPressed = false;
             Button b = (Button)sender;
             op = b.Text;
             value = double.Parse(textBox1.Text);
             label1.Text = (value + op).ToString();
             textBox1.Text = "0";
-            opPressed = true;
-            eqPressed = false;
-            dotPressed = false;
-            
+
         }
 
         private void button14_Click(object sender, EventArgs e)
@@ -83,7 +83,7 @@ namespace Kalkulator
                             value = 0;
                             label1.Text = "";
                             textBox1.Text = "0";
-                            op = "0";
+                            op = "";
                         }
                         break;
                     case "-":
@@ -95,7 +95,7 @@ namespace Kalkulator
                             value = 0;
                             label1.Text = "";
                             textBox1.Text = "0";
-                            op = "0";
+                            op = "";
                         }
                         break;
                     case "*":
@@ -107,7 +107,7 @@ namespace Kalkulator
                             value = 0;
                             label1.Text = "";
                             textBox1.Text = "0";
-                            op = "0";
+                            op = "";
                         }
                         break;
                     case "/":
@@ -121,7 +121,7 @@ namespace Kalkulator
                                 value = 0;
                                 label1.Text = "";
                                 textBox1.Text = "0";
-                                op = "0";
+                                op = "";
                             }
                         }
                         else
@@ -136,7 +136,8 @@ namespace Kalkulator
                         break;
                 }
                 dotPressed = false;
-                value = 0.0;
+                //value = 0.0;
+                op = "";
             }
         }
 
@@ -156,7 +157,11 @@ namespace Kalkulator
                 textBox1.Text = "0";
             eqPressed = false;
             if (dotPressed==false)
-                textBox1.Text = textBox1.Text + ",";
+            {
+           
+                    textBox1.Text = textBox1.Text + ",";
+            }
+                
             dotPressed = true;
         }
     }
