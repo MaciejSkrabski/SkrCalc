@@ -77,7 +77,7 @@ namespace Kalkulator
                     case "+":
                         if ((value + double.Parse(textBox1.Text)).ToString().Length < 14)
                             textBox1.Text = ((value + double.Parse(textBox1.Text))).ToString();
-                        else
+                        else if (Math.Abs(value + double.Parse(textBox1.Text))>9999999999999)
                         {
                             MessageBox.Show("The number is too big for the display: \n " + ((value + double.Parse(textBox1.Text))).ToString());
                             value = 0;
@@ -85,11 +85,13 @@ namespace Kalkulator
                             textBox1.Text = "0";
                             op = "";
                         }
+                        else
+                            textBox1.Text = ((value + double.Parse(textBox1.Text))).ToString().Substring(0,13);
                         break;
                     case "-":
                         if ((value - double.Parse(textBox1.Text)).ToString().Length < 12)
                             textBox1.Text = ((value - double.Parse(textBox1.Text))).ToString();
-                        else
+                        else if (Math.Abs(value - double.Parse(textBox1.Text))>9999999999999)
                         {
                             MessageBox.Show("The number is too big for the display: \n" + ((value - double.Parse(textBox1.Text)).ToString()));
                             value = 0;
@@ -97,11 +99,13 @@ namespace Kalkulator
                             textBox1.Text = "0";
                             op = "";
                         }
+                        else 
+                            textBox1.Text = ((value - double.Parse(textBox1.Text))).ToString().Substring(0,13);
                         break;
                     case "*":
                         if ((value * double.Parse(textBox1.Text)).ToString().Length < 12)
                             textBox1.Text = ((value * double.Parse(textBox1.Text))).ToString();
-                        else
+                        else if ((Math.Abs(value * double.Parse(textBox1.Text))>9999999999999))
                         {
                             MessageBox.Show("The number is too big for the display: \n" + ((value * double.Parse(textBox1.Text)).ToString()));
                             value = 0;
@@ -109,13 +113,15 @@ namespace Kalkulator
                             textBox1.Text = "0";
                             op = "";
                         }
+                        else
+                            textBox1.Text = ((value * double.Parse(textBox1.Text))).ToString().Substring(0,13);
                         break;
                     case "/":
                         if (double.Parse(textBox1.Text) != 0)
                         {
                             if ((value / double.Parse(textBox1.Text)).ToString().Length < 12)
                                 textBox1.Text = (value / double.Parse(textBox1.Text)).ToString();
-                            else
+                            else if (Math.Abs(value / double.Parse(textBox1.Text))>9999999999999)
                             {
                                 MessageBox.Show("The number is too big for the display: \n" + ((value / double.Parse(textBox1.Text)).ToString()));
                                 value = 0;
@@ -123,6 +129,8 @@ namespace Kalkulator
                                 textBox1.Text = "0";
                                 op = "";
                             }
+                            else
+                                textBox1.Text = (value / double.Parse(textBox1.Text)).ToString().Substring(0,13);
                         }
                         else
                         {
